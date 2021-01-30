@@ -169,6 +169,7 @@ class VisualBoard extends JPanel {
     public void reset() {
         b.reset();
         turn = isHost;
+        repaint();
     }
 
     protected void paintComponent(Graphics g) {
