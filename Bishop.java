@@ -21,15 +21,29 @@ public class Bishop extends Piece {
 		lowX = Math.max(newx, x);
 		lowY = Math.min(newy, y);
 
-		for(int i = 0; i < newx - x;i++){
-			if(brd.getpiece(lowX+i, lowY+i) != null)
+		if(lowX == x || lowY == y){
+			for(int i = 1; i < newx - x;i++){
+				if(brd.getpiece(lowX+i, lowY+i) != null)
+					canMove = false;
+			}
+			if(x == lowX && brd.getpiece(highX, highY).color == color)
 				canMove = false;
+			if(x == highX && brd.getpiece(lowX, lowY).color == color)
+				canMove = false;
+			return canMove;
 		}
-		if(x == lowX && brd.getpiece(highX, highY).color == color)
-			canMove = false;
-		if(x == highX && brd.getpiece(lowX, highY).color == color)
-			canMove = false;
-		return canMove;
+
+		else{
+			for(int i = 1; i < newx - x;i++){
+				if(brd.getpiece(lowX+i, highY+i) != null)
+					canMove = false;
+			}
+			if(x == lowX && brd.getpiece(highX, lowY).color == color)
+				canMove = false;
+			if(x == highX && brd.getpiece(lowX, highY).color == color)
+				canMove = false;
+			return canMove;
+		}
 	}
 
 	
