@@ -5,9 +5,11 @@ public class ClientMessageHandler {
 
     Server myServer;
     String theCommand = "";
+    GUI myUI;
 
-    public ClientMessageHandler(Server myServer) {
+    public ClientMessageHandler(Server myServer, GUI myUI){
         this.myServer = myServer;
+        this.myUI = myUI;
     }
 
     public void handleClientMessage(ClientConnection myClientConnection, String msg) {
@@ -23,13 +25,18 @@ public class ClientMessageHandler {
         myServer.sendMessageToUI(theExceptionalEvent);
     }
 
-    public void handleCompleteClientMessage(ClientConnection myClientConnection, String theCommand) {
+    public void handleCompleteClientMessage(ClientConnection myClientConnection, String fullMessage) {
 
-        System.out.println(theCommand);
 
-        switch (theCommand) {
-            //send command to the other client
-        }
+        System.out.println("Message recieved: " + fullMessage);
+        
+        int oldx, oldy, newx, newy;
+        oldx = Integer.parseInt(fullMessage.substring(0, 1));
+        oldy = Integer.parseInt(fullMessage.substring(1, 2));
+        newx = Integer.parseInt(fullMessage.substring(2, 3));
+        newy = Integer.parseInt(fullMessage.substring(3, 4));
+
+        myUI.forceMove(oldx, oldy, newx, newy);
 
             
     }

@@ -25,7 +25,7 @@ public class Client implements Runnable {
         this.address = address;
         this.portNumber = portNumber;
         this.myUI = myUI;
-        this.myServerMessageHandler = new ServerMessageHandler(this);
+        this.myServerMessageHandler = new ServerMessageHandler(this, myUI);
     }
 
     public void connectToServer() {
