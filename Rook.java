@@ -1,7 +1,5 @@
 import java.awt.Toolkit;
 
-import javax.lang.model.util.ElementScanner6;
-
 public class Rook extends Piece {
 	int high, low;
 	boolean canMove;
