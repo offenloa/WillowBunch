@@ -10,5 +10,6 @@ public class King extends Piece {
 			super.setSprite(Toolkit.getDefaultToolkit().getImage("Chess_Pieces/Chess_kdt60.png"));
 			
 	}
+ 
 	
 }
