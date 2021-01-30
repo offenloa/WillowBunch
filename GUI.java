@@ -12,6 +12,12 @@ public class GUI implements Runnable{
         vb.turn = true;
     }
 
+    public void forceMove(int oldx, int oldy, int newx, int newy) {
+        Piece p = b.getpiece(oldx, oldy);
+        b.setPiece(newx, newy, p);
+        b.setPiece(oldx, oldy, null);
+    }
+
     public GUI(Board b) {
         this.b = b;
         //this.myMain = myMain;
@@ -42,6 +48,7 @@ class VisualBoard extends JPanel {
     private static final int SIZE = 8;
     transient Board b;
     JFrame f;
+    JLabel label;
     boolean held = false;
     transient Piece heldPiece;
     int oldx;
@@ -99,6 +106,8 @@ class VisualBoard extends JPanel {
             }
         });
         toolbar.add(cBlack);
+
+        toolbar.add(new JLabel("test"));
 
         add(toolbar);
 
@@ -166,7 +175,7 @@ class VisualBoard extends JPanel {
         g.setColor(new Color(255,255,255));
 		g.fillRect(0, 0, SQUARE_SIZE * 8, SQUARE_SIZE * 8);
 		g.setColor(new Color(192,192,192));
-		
+        
 		for(int i = 0; i<8; i+=2) {
 			for(int j = 1; j<8; j+=2) {
 				g.fillRect(j*SQUARE_SIZE, i*SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
