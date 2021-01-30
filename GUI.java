@@ -161,7 +161,8 @@ class VisualBoard extends JPanel {
     }
 
     public void cWhitePressed() {
-        //test.
+        b.reset();
+        repaint();
         return;
     }
 
