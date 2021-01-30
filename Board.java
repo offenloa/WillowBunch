@@ -29,7 +29,9 @@ public class Board {
         boolean moved = p.move(i, j);
         if(moved) {
 			setPiece(i, j, null);
-			setPiece(i, j, p);
+            setPiece(i, j, p);
+            p.x = i;
+            p.y = j;
         }
         return moved;
 	}
