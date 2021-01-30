@@ -50,6 +50,8 @@ class VisualBoard extends JPanel {
     int boxheight;
     int boxwidth;
 
+    boolean isHost;
+
     GUI myUI;
 
     public VisualBoard(JFrame f, Board b, GUI myUI) {
@@ -63,9 +65,15 @@ class VisualBoard extends JPanel {
 
         if(x == 0){//HOST GAME
             test.startHosting(myUI);
+            isHost = true;
         }
         else if(x == 1){//JOIN GAME
             test.joinGame(myUI);
+            isHost = false;
+        }
+        else{
+            isHost = false;
+            System.exit(0);
         }
 
 
@@ -114,6 +122,9 @@ class VisualBoard extends JPanel {
                         
                     }
                 }
+                
+                test.sendMove(isHost, oldx, oldy, x, y);
+
                 repaint();
                 System.out.println( x +" "+ y);
                 if(heldPiece != null){
@@ -135,7 +146,7 @@ class VisualBoard extends JPanel {
     }
 
     public void cWhitePressed() {
-        JOptionPane.showMessageDialog(this, "You are the host.");
+        //test.
         return;
     }
 

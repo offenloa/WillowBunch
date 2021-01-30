@@ -14,6 +14,7 @@ public class Server implements Runnable {
     GUI myUI;
     int portNumber = 5555, backlog = 500;
     boolean doListen = false;
+    ClientConnection myCC;
 
     public Server(int portNumber, int backlog, GUI myUI) {
         this.portNumber = portNumber;
@@ -96,7 +97,7 @@ public class Server implements Runnable {
             if (doListen == true) {
                 try {
                     clientSocket = serverSocket.accept();
-                    ClientConnection myCC = new ClientConnection(clientSocket, myClientCommandHandler, this);
+                    myCC = new ClientConnection(clientSocket, myClientCommandHandler, this);
                     Thread myCCthread = new Thread(myCC);
                     myCCthread.start();
                     clientConnected(clientSocket.getRemoteSocketAddress().toString());
