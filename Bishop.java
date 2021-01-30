@@ -1,5 +1,4 @@
 import java.awt.Toolkit;
-import java.math.*;
 public class Bishop extends Piece {
 
 	int highX,highY,lowX,lowY;
