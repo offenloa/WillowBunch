@@ -30,8 +30,10 @@ public class ServerMessageHandler {
 
                 myUI.forceMove(oldx, oldy, newx, newy);
                 
-                fullMessage = "";
+                
             }
+
+            fullMessage = "";
         }
         
     }
