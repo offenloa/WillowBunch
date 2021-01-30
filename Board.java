@@ -23,6 +23,16 @@ public class Board {
 
     public void setPiece(int i, int j, Piece p) {
 		board[i][j] = p;
+    }
+    
+    public void move(Piece p, int i, int j) {
+		setPiece(p.x, p.y, null);
+		if(p.move(i, j)) {
+			setPiece(i, j, null);
+			setPiece(i, j, p);
+		}
+		else
+			setPiece(p.x, p.y, p);
 	}
     
     public void reset() {
