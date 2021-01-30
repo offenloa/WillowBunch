@@ -1,11 +1,11 @@
 import java.awt.Image;
-public class Piece {
+abstract class Piece {
 	int x;
 	int y;
 	boolean color;
 	Image sprite;
 	
-	public Piece(int x, int y,boolean color) {
+	Piece(int x, int y,boolean color) {
 		this.x = x;
 		this.y = y;
 		this.color = color;
