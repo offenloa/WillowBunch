@@ -14,6 +14,8 @@ public class test {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String input = "";
 
+        String testMessage = "This is a test message";
+
         while(true){
 
             try{

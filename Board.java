@@ -15,8 +15,8 @@ public class Board {
 	}
 	
 	public Piece getpiece(int i, int j) {
-		Piece p = null;
-		if(board[i][j]!=null)
+        Piece p = null;
+		if((i>=0)&&(i<8)&&(j>=0)&&(j<8)&&(board[i][j]!=null))
 			p = board[i][j];
 		return p;
     }
