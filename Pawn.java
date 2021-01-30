@@ -16,7 +16,7 @@ public class Pawn extends Piece {
 		canMove = true;
 		if(newx != x)
 			canMove = false;
-		for(int i = y; i<=newy;i++){
+		for(int i = y+1; i<=newy;i++){
 			if(brd.getpiece(x,i) != null)
 				canMove = false;
 		}

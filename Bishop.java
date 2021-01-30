@@ -25,9 +25,10 @@ public class Bishop extends Piece {
 			if(brd.getpiece(lowX+i, lowY+i) != null)
 				canMove = false;
 		}
-		if(brd.getpiece(highX, highY).color == color)
+		if(x == lowX && brd.getpiece(highX, highY).color == color)
 			canMove = false;
-
+		if(x == highX && brd.getpiece(lowX, highY).color == color)
+			canMove = false;
 		return canMove;
 	}
 
