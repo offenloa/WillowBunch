@@ -9,6 +9,7 @@ public class GUI implements Runnable{
     
     public void update(){
         vb.repaint();
+        vb.turn = true;
     }
 
     public GUI(Board b) {
@@ -51,6 +52,7 @@ class VisualBoard extends JPanel {
     int boxwidth;
 
     boolean isHost;
+    boolean turn;
 
     GUI myUI;
 
@@ -66,10 +68,12 @@ class VisualBoard extends JPanel {
         if(x == 0){//HOST GAME
             test.startHosting(myUI);
             isHost = true;
+            turn = true;
         }
         else if(x == 1){//JOIN GAME
             test.joinGame(myUI);
             isHost = false;
+            turn = false;
         }
         else{
             isHost = false;
@@ -109,27 +113,37 @@ class VisualBoard extends JPanel {
                     if(b.move(heldPiece, x,y)) {
                         b.setPiece(oldx, oldy, null);
                         test.sendMove(isHost, oldx, oldy, x, y);
+                if(turn) {
+                    int x = (SIZE-1) - e.getY()/SQUARE_SIZE;
+                    int y = e.getX()/SQUARE_SIZE;
+                    if(!((x>=0)&&(x<SIZE)&&(y>=0)&&(y<SIZE))){
+                        return;
                     }
-                    heldPiece = null;
-                    held = false;
-                }
-                else {
-                    
-                    if (b.getpiece(x,y) != null){
-                        held = true;
-                        oldx = x;
-                        oldy = y;
-                        heldPiece = b.getpiece(x,y);
+                    if (held) {
+                        if(b.move(heldPiece, x,y)) {
+                            b.setPiece(oldx, oldy, null);
+                            turn = false;
+                        }
+                        heldPiece = null;
+                        held = false;
+                    }
+                    else {
                         
+                        if (b.getpiece(x,y) != null){
+                            held = true;
+                            oldx = x;
+                            oldy = y;
+                            heldPiece = b.getpiece(x,y);
+                            
+                        }
                     }
-                }
-                
                 
 
-                repaint();
-                System.out.println( x +" "+ y);
-                if(heldPiece != null){
-                    System.out.println( heldPiece.x +" "+ heldPiece.y);
+                    repaint();
+                    System.out.println( x +" "+ y);
+                    if(heldPiece != null){
+                        System.out.println( heldPiece.x +" "+ heldPiece.y);
+                    }
                 }
             }
         });
