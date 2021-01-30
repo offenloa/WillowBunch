@@ -3,13 +3,15 @@ abstract class Piece {
 	int x;
 	int y;
 	boolean color;
-	Image sprite;
+    Image sprite;
+    Board brd;
 	
-	Piece(int x, int y,boolean color) {
+	Piece(int x, int y,boolean color, Board brd) {
 		this.x = x;
 		this.y = y;
 		this.color = color;
-		this.sprite = null;
+        this.sprite = null;
+        this.brd = brd;
 	}
 	
 	public void setSprite(Image image) {
