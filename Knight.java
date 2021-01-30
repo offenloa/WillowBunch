@@ -16,14 +16,14 @@ public class Knight extends Piece {
 	public boolean move(int newx, int newy){
 		canMove = false;
 
-		if(newx == x && Math.abs(newy- y) > 1 && Math.abs(newy - y) <5)
+		if(newx == x && Math.abs(newy - y) > 1 && Math.abs(newy - y) <5)
 			canMove = true;
-		else if(newy == y && Math.abs(newx- x) > 1 && Math.abs(newx - x) <5)
+		else if(newy == y && Math.abs(newx - x) > 1 && Math.abs(newx - x) <5)
 			canMove = true;
 		else if(Math.abs(newy - y)== Math.abs(newx - x)&& Math.abs(newx- x) >1 && Math.abs(newx - x) <5)
 			canMove = true;
 
-		if(brd.getpiece(newx, newy).color == color)
+		if(brd.getpiece(newx, newy) != null && brd.getpiece(newx, newy).color == color)
 			canMove = false;
 
 		return canMove;

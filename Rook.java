@@ -15,7 +15,7 @@ public class Rook extends Piece {
 
 	public boolean move(int newx, int newy){
 		canMove = true;
-		if(brd.getpiece(newx,newy).color == color)
+		if(brd.getpiece(newx, newy) != null && brd.getpiece(newx,newy).color == color)
 				canMove = false;
 		if(newx == x){
 			high = Math.max(newy, y);
@@ -35,8 +35,6 @@ public class Rook extends Piece {
 				if(brd.getpiece(i,y)!= null)
 					canMove = false;
 			}
-			if(brd.getpiece(newx,newy).color == color)
-				canMove = false;
 			
 		}
 

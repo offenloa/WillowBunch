@@ -34,7 +34,7 @@ public class Bishop extends Piece {
 				canMove = false;
 		}
 
-		if(brd.getpiece(x+Math.abs(newx - x) * directionX, y+Math.abs(newy - y) * directionY).color == color)
+		if(brd.getpiece(newx, newy) != null && brd.getpiece(x+Math.abs(newx - x) * directionX, y+Math.abs(newy - y) * directionY).color == color)
 			canMove = false;
 
 		return canMove;
