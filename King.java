@@ -18,7 +18,7 @@ public class King extends Piece {
 		if(Math.abs(newx - x) < 2 && Math.abs(newy - y) < 2)
 			canMove = true;
 		
-		if(brd.getpiece(newx,newy).color == color)
+		if(brd.getpiece(newx, newy) != null && brd.getpiece(newx,newy).color == color)
 			canMove = false;
 		return canMove;
 		

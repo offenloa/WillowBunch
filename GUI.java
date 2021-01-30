@@ -94,6 +94,9 @@ class VisualBoard extends JPanel {
             public void mousePressed(MouseEvent e) {
                 int x = (SIZE-1) - e.getY()/SQUARE_SIZE;
                 int y = e.getX()/SQUARE_SIZE;
+                if(!((x>=0)&&(x<SIZE)&&(y>=0)&&(y<SIZE))){
+                    return;
+                }
                 if (held) {
                     if(b.move(heldPiece, x,y)) {
                         b.setPiece(oldx, oldy, null);
@@ -132,7 +135,7 @@ class VisualBoard extends JPanel {
     }
 
     public void cWhitePressed() {
-        JOptionPane.showMessageDialog(null, "You are the host.");
+        JOptionPane.showMessageDialog(this, "You are the host.");
         return;
     }
 
