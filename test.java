@@ -32,7 +32,7 @@ public class test {
 
     public static void sendMove(boolean isHost, int oldx, int oldy, int x, int y){
         String message = String.valueOf(oldx) + String.valueOf(oldy) + String.valueOf(x) + String.valueOf(y);
-        System.out.println(message);
+        System.out.println("sending " + message);
         if(isHost){
             myServer.myCC.sendStringMessageToClient(message);
         }

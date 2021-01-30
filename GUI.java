@@ -108,6 +108,7 @@ class VisualBoard extends JPanel {
                 if (held) {
                     if(b.move(heldPiece, x,y)) {
                         b.setPiece(oldx, oldy, null);
+                        test.sendMove(isHost, oldx, oldy, x, y);
                     }
                     heldPiece = null;
                     held = false;
@@ -123,7 +124,7 @@ class VisualBoard extends JPanel {
                     }
                 }
                 
-                test.sendMove(isHost, oldx, oldy, x, y);
+                
 
                 repaint();
                 System.out.println( x +" "+ y);
