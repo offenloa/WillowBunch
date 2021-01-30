@@ -114,6 +114,7 @@ class VisualBoard extends JPanel {
     }
 
     public void cWhitePressed() {
+        JOptionPane.showMessageDialog(null, "You are the host.");
         return;
     }
 
