@@ -16,6 +16,7 @@ public class GUI implements Runnable{
         Piece p = b.getpiece(oldx, oldy);
         b.setPiece(newx, newy, p);
         b.setPiece(oldx, oldy, null);
+        update();
     }
 
     public GUI(Board b) {

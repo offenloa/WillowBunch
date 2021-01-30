@@ -20,7 +20,7 @@ public class Server implements Runnable {
         this.portNumber = portNumber;
         this.backlog = backlog;
         this.myUI = myUI;
-        this.myClientCommandHandler = new ClientMessageHandler(this);
+        this.myClientCommandHandler = new ClientMessageHandler(this, myUI);
     }
 
     public synchronized void setDoListen(boolean doListen) {

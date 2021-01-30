@@ -1,6 +1,3 @@
-import java.io.*;
-
-
 public class test {
 
     static Server myServer;
@@ -27,7 +24,6 @@ public class test {
     public static void joinGame(GUI myUI){
         myClient = new Client("127.0.0.1", 5555, myUI);
         myClient.connectToServer();
-        myClient.sendStringMessageToServer("theMessage");
     }
 
     public static void sendMove(boolean isHost, int oldx, int oldy, int x, int y){

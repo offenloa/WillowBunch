@@ -71,6 +71,7 @@ public class ClientConnection implements Runnable {
             byte msg = (byte) theMessage.charAt(i);
             sendMessageToClient(msg);
         }
+        sendMessageToClient((byte)(0xFFFF));
     }
 
     public void clientQuit() {
