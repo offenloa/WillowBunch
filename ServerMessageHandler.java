@@ -17,16 +17,21 @@ public class ServerMessageHandler {
             fullMessage += msg;
         } else {
             System.out.println("Message recieve: " + fullMessage);
-            int oldx, oldy, newx, newy;
-            oldx = Integer.parseInt(fullMessage.substring(0, 1));
-            oldy = Integer.parseInt(fullMessage.substring(1, 2));
-            newx = Integer.parseInt(fullMessage.substring(2, 3));
-            newy = Integer.parseInt(fullMessage.substring(3, 4));
 
+            if(fullMessage.equals("9999")){
+                myUI.reset();
+            }
+            else{
+                int oldx, oldy, newx, newy;
+                oldx = Integer.parseInt(fullMessage.substring(0, 1));
+                oldy = Integer.parseInt(fullMessage.substring(1, 2));
+                newx = Integer.parseInt(fullMessage.substring(2, 3));
+                newy = Integer.parseInt(fullMessage.substring(3, 4));
 
-            myUI.forceMove(oldx, oldy, newx, newy);
-            
-            fullMessage = "";
+                myUI.forceMove(oldx, oldy, newx, newy);
+                
+                fullMessage = "";
+            }
         }
         
     }
