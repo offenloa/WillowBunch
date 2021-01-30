@@ -25,14 +25,13 @@ public class Board {
 		board[i][j] = p;
     }
     
-    public void move(Piece p, int i, int j) {
-		setPiece(p.x, p.y, null);
-		if(p.move(i, j)) {
+    public boolean move(Piece p, int i, int j) {
+        boolean moved = p.move(i, j);
+        if(moved) {
 			setPiece(i, j, null);
 			setPiece(i, j, p);
-		}
-		else
-			setPiece(p.x, p.y, p);
+        }
+        return moved;
 	}
     
     public void reset() {

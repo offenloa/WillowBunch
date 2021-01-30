@@ -77,7 +77,9 @@ class VisualBoard extends JPanel {
                 int x = (SIZE-1) - e.getY()/SQUARE_SIZE;
                 int y = e.getX()/SQUARE_SIZE;
                 if (held) {
-                    b.move(heldPiece, x,y);
+                    if(b.move(heldPiece, x,y)) {
+                        b.setPiece(oldx, oldy, heldPiece);
+                    }
                     heldPiece = null;
                     held = false;
                 }
@@ -93,6 +95,9 @@ class VisualBoard extends JPanel {
                 }
                 repaint();
                 System.out.println( x +" "+ y);
+                if(heldPiece != null){
+                    System.out.println( heldPiece.x +" "+ heldPiece.y);
+                }
             }
         });
 
