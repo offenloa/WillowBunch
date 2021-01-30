@@ -14,6 +14,7 @@ public class Bishop extends Piece {
 	}
 
 	public boolean move(int newx, int newy){
+		canMove = true;
 
 		highX = Math.max(newx, x);
 		highY = Math.min(newy, y);
