@@ -25,6 +25,8 @@ public class ClientMessageHandler {
 
     public void handleCompleteClientMessage(ClientConnection myClientConnection, String theCommand) {
 
+        System.out.println(theCommand);
+
         switch (theCommand) {
             //send command to the other client
         }

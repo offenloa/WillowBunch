@@ -37,9 +37,11 @@ public class Client implements Runnable {
             myClientThread = new Thread(this);
             myClientThread.start();
             stoppedThread.set(false);
-            myUI.update("Connected to server.");
+            //myUI.update("Connected to server.");
+            System.out.println("Connected to server");
         } catch (Exception e) {
-            myUI.update("Error in connecting");
+            //myUI.update("Error in connecting");
+            System.out.println("Error in connecting");
         }
 
     }
@@ -55,9 +57,11 @@ public class Client implements Runnable {
             mySocket = null;
             input = null;
             output = null;
-            myUI.update("Disconnected from Server.");
+            //myUI.update("Disconnected from Server.");
+            System.out.println("Disconnected from server");
         } catch (Exception e) {
-            myUI.update("Cannot disconnect. Exiting program");
+            //myUI.update("Cannot disconnect. Exiting program");
+            System.out.println("cannot disconnect");
             System.exit(0);
         }
 
@@ -79,11 +83,12 @@ public class Client implements Runnable {
             byte msg = (byte) theMessage.charAt(i);
             sendMessagetoServer(msg);
         }
+        sendMessagetoServer((byte)(0xFFFF));
     }
 
     public void setPort(int portNumber) {
         this.portNumber = portNumber;
-        myUI.update("Port number updated to " + this.portNumber);
+        //myUI.update("Port number updated to " + this.portNumber);
     }
 
     public int getPort() {
@@ -92,7 +97,7 @@ public class Client implements Runnable {
 
     public void setAddress(String address) {
         this.address = address;
-        myUI.update("Address updated to " + this.address);
+        //myUI.update("Address updated to " + this.address);
     }
 
     public String getAddress() {
@@ -100,7 +105,7 @@ public class Client implements Runnable {
     }
 
     public void sendMessageToUI(String theString) {
-        myUI.update(theString);
+        //myUI.update(theString);
     }
 
     @Override

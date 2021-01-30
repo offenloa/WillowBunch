@@ -29,6 +29,7 @@ public class ClientConnection implements Runnable {
         } catch (IOException ex) {
             Logger.getLogger(ClientConnection.class.getName()).log(Level.SEVERE, null, ex);
             myServer.sendMessageToUI("Cannot create IO streams; exiting program.");
+            System.out.println("Cannot make IO stream");
             System.exit(0);
         }
     }
