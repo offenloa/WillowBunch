@@ -105,7 +105,8 @@ class VisualBoard extends JPanel {
         });
         toolbar.add(reset);
 
-        toolbar.add(new JLabel("test"));
+        label = new JLabel();
+        toolbar.add(label);
 
         add(toolbar);
 
@@ -199,6 +200,13 @@ class VisualBoard extends JPanel {
 					g.drawImage(b.getSprite(j,i), i*SQUARE_SIZE, SQUARE_SIZE*(7 - j), this);
 				}
 			}
+        }
+
+        if(turn){
+            label.setText("It's your turn!");
+        }
+        else {
+            label.setText("It's not your turn!");
         }
 
     }
