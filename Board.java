@@ -38,7 +38,7 @@ public class Board {
     
     public void reset() {
         String[] rowW = {"r","kn","b","q","k","b","kn","r"};
-        String[] rowB = {"r","kn","b","k","q","b","kn","r"};
+        String[] rowB = {"r","kn","b","q","k","b","kn","r"};
         for(int i = 0; i<8; i++) {
 			board[6][i] = new Pawn(6,i,false, this);
 			board[5][i] = null;
