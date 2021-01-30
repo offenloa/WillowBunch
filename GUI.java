@@ -104,15 +104,6 @@ class VisualBoard extends JPanel {
 
         addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
-                int x = (SIZE-1) - e.getY()/SQUARE_SIZE;
-                int y = e.getX()/SQUARE_SIZE;
-                if(!((x>=0)&&(x<SIZE)&&(y>=0)&&(y<SIZE))){
-                    return;
-                }
-                if (held) {
-                    if(b.move(heldPiece, x,y)) {
-                        b.setPiece(oldx, oldy, null);
-                        test.sendMove(isHost, oldx, oldy, x, y);
                 if(turn) {
                     int x = (SIZE-1) - e.getY()/SQUARE_SIZE;
                     int y = e.getX()/SQUARE_SIZE;
