@@ -25,4 +25,57 @@ public class Board {
 		board[i][j] = p;
 	}
     
+    public void reset() {
+        String[] rowW = {"r","kn","b","q","k","b","kn","r"};
+        String[] rowB = {"r","kn","b","k","q","b","kn","r"};
+        for(int i = 0; i<8; i++) {
+			board[6][i] = new Pawn(6,i,false, this);
+			board[5][i] = null;
+			board[4][i] = null;
+			board[3][i] = null;
+			board[2][i] = null;
+            board[1][i] = new Pawn(1,i,true, this);
+            switch(rowW[i]) {
+                case "r":
+                    board[0][i] = new Rook(0,i,true, this);
+                    break;
+                case "kn":
+                    board[0][i] = new Knight(0,i,true, this);
+                    break;
+                case "b":
+                    board[0][i] = new Bishop(0,i,true, this);
+                    break;
+                case "q":
+                    board[0][i] = new Queen(0,i,true, this);
+                    break;
+                case "k":
+                    board[0][i] = new King(0,i,true, this);
+                    break;
+                default:
+                    break;
+            }
+                
+            switch(rowB[i]) {
+                case "r":
+                    board[7][i] = new Rook(7,i,false, this);
+                    break;
+                case "kn":
+                    board[7][i] = new Knight(7,i,false, this);
+                    break;
+                case "b":
+                    board[7][i] = new Bishop(7,i,false, this);
+                    break;
+                case "q":
+                    board[7][i] = new Queen(7,i,false, this);
+                    break;
+                case "k":
+                    board[7][i] = new King(7,i,false, this);
+                    break;
+                default:
+                    break;
+            }
+        }
+            
+    }
+
 }

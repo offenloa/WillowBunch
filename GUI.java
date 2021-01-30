@@ -5,6 +5,10 @@ public class GUI implements Runnable{
     VisualBoard vb;
     Board b;
     
+    public void update(){
+        vb.repaint();
+    }
+
     public GUI(Board b) {
         this.b = b;
     }
