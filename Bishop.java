@@ -19,12 +19,12 @@ public class Bishop extends Piece {
 		if(Math.abs(newx - x) != Math.abs(newy - y))
 			canMove = false;
 
-		if (newx < x)
+		if (newx > x)
 			directionX = 1;
 		else
 			directionX = -1;
 		
-		if (newy < y)
+		if (newy > y)
 			directionY = 1;
 		else
 			directionY = -1;
