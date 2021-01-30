@@ -86,7 +86,11 @@ public class Board {
                     break;
             }
         }
-            
+        board[6][0] = new Vanguard(6, 0, false, this);
+        board[6][7] = new Vanguard(6, 7, false, this);
+        board[1][0] = new Vanguard(1, 0, true, this);
+        board[1][7] = new Vanguard(1, 7, true, this);
+
     }
 
 }
