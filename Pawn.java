@@ -14,10 +14,10 @@ public class Pawn extends Piece {
 
 	public boolean move(int newx, int newy){
 		canMove = true;
-		if(newx != x)
+		if(newy != y)
 			canMove = false;
-		for(int i = y+1; i<=newy;i++){
-			if(brd.getpiece(x,i) != null)
+		for(int i = x+1; i<=newx;i++){
+			if(brd.getpiece(i,y) != null)
 				canMove = false;
 		}
 		return canMove;

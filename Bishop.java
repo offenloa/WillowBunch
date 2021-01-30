@@ -30,7 +30,7 @@ public class Bishop extends Piece {
 			directionY = -1;
 
 		for(int i = 1; i < Math.abs(newx - x) - 1; i++){
-			if(brd.getpiece(x+i*directionX, y+i*directionY) == null)
+			if(brd.getpiece(x+i*directionX, y+i*directionY) != null)
 				canMove = false;
 		}
 
