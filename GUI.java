@@ -1,5 +1,6 @@
 import java.awt.*;
 import javax.swing.*;
+import java.awt.event.*;
 public class GUI implements Runnable{
     JFrame f;
     VisualBoard vb;
@@ -38,6 +39,12 @@ class VisualBoard extends JPanel {
     private static final int SIZE = 8;
     transient Board b;
     JFrame f;
+    boolean held = false;
+    transient Piece heldPiece;
+    int oldx;
+    int oldy;
+    int currentx;
+    int currenty;
     int boxheight;
     int boxwidth;
 
@@ -64,6 +71,31 @@ class VisualBoard extends JPanel {
         toolbar.add(cBlack);
 
         add(toolbar);
+
+        addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                int x = (SIZE-1) - e.getY()/SQUARE_SIZE;
+                int y = e.getX()/SQUARE_SIZE;
+                if (held) {
+                    b.setPiece(x, y, heldPiece);
+                    b.setPiece(oldx,oldy,null);
+                    heldPiece = null;
+                    held = false;
+                }
+                else {
+                    
+                    if (b.getpiece(x,y) != null){
+                        held = true;
+                        oldx = x;
+                        oldy = y;
+                        heldPiece = b.getpiece(x,y);
+                        
+                    }
+                }
+                repaint();
+                System.out.println( x +" "+ y);
+            }
+        });
 
         Container pane = f.getContentPane();
         pane.add(toolbar, BorderLayout.NORTH);
@@ -101,6 +133,10 @@ class VisualBoard extends JPanel {
 				g.fillRect(i*SQUARE_SIZE, j*SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
 			}
 		}
+        if(held) {
+            g.setColor(Color.GREEN);
+            g.fillRect(oldy*SQUARE_SIZE, (SIZE-1-oldx)*SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
+        }
 		
 		for(int i = 0; i<8; i++) {
 			for(int j = 0; j<8; j++) {
@@ -108,7 +144,8 @@ class VisualBoard extends JPanel {
 					g.drawImage(b.getSprite(j,i), i*SQUARE_SIZE, SQUARE_SIZE*(7 - j), this);
 				}
 			}
-		}
+        }
+
     }
 
 
