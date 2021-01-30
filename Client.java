@@ -15,13 +15,13 @@ public class Client implements Runnable {
     OutputStream output;
     Socket mySocket = null;
     ServerMessageHandler myServerMessageHandler;
-    UserInterface myUI;
+    GUI myUI;
     Thread myClientThread;
     private AtomicBoolean stoppedThread = new AtomicBoolean(true);
     String address;
     int portNumber;
 
-    public Client(String address, int portNumber, UserInterface myUI) {
+    public Client(String address, int portNumber, GUI myUI) {
         this.address = address;
         this.portNumber = portNumber;
         this.myUI = myUI;
@@ -126,5 +126,5 @@ public class Client implements Runnable {
             }
         }
     }
-
 }
+
