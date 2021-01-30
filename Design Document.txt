@@ -1,0 +1,13 @@
+We divided this prompt into three portions: Game logic, Game connectivity, and GUI.
+Owen mostly worked on logic, Manjyot mostly worked on connections, and Ayden worked
+on the GUI. 
+
+We chose to write the solution in Java because it is the language we are most 
+familliar with and it's properties of inheritance shine in the context of chess.
+For example, we use an abstract class "Piece" that is subclassed by the specific
+pieces and by doing this we can represent the board as a two-dimensional array 
+of Pieces.
+
+For the GUI, JFrame was chosen because Ayden had the most experience with it.
+The visual board is implemented as a custom JPanel that can easily track mouse
+clicks and button presses.
