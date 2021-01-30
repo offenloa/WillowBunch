@@ -132,7 +132,7 @@ class VisualBoard extends JPanel {
                     }
                     else {
                         
-                        if (b.getpiece(x,y) != null){
+                        if ((b.getpiece(x,y) != null)&&(b.getpiece(x,y).color == isHost)){
                             held = true;
                             oldx = x;
                             oldy = y;
