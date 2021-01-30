@@ -5,6 +5,7 @@ public class GUI implements Runnable{
     JFrame f;
     VisualBoard vb;
     Board b;
+    test myMain;
     
     public void update(){
         vb.repaint();
@@ -12,6 +13,7 @@ public class GUI implements Runnable{
 
     public GUI(Board b) {
         this.b = b;
+        //this.myMain = myMain;
     }
 
     public void run() {
@@ -25,7 +27,7 @@ public class GUI implements Runnable{
     public void openGUI(Board b) {
         f = new JFrame("New Chess");
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
-        vb = new VisualBoard(f, b);
+        vb = new VisualBoard(f, b, this);
         f.add(vb);
         f.pack();
         f.setVisible(true); 
@@ -48,10 +50,26 @@ class VisualBoard extends JPanel {
     int boxheight;
     int boxwidth;
 
-    public VisualBoard(JFrame f, Board b) {
+    GUI myUI;
+
+    public VisualBoard(JFrame f, Board b, GUI myUI) {
         this.f = f;
         this.b = b;
+        this.myUI = myUI;
 
+        String[] options = {"HOST", "JOIN", "CANCEL"};
+        int x = JOptionPane.showOptionDialog(this, "Host Game or Join?", "New Game", 
+        2, 3, null, options , 0);
+
+        if(x == 0){//HOST GAME
+            test.startHosting(myUI);
+        }
+        else if(x == 1){//JOIN GAME
+            test.joinGame(myUI);
+        }
+
+
+        
         JToolBar toolbar = new JToolBar("Connection");
 
         JButton cWhite = new JButton("Connect as White");
