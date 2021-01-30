@@ -42,19 +42,21 @@ public class Server implements Runnable {
     }
 
     public void serverSocketStarted() {
-        myUI.update("Server socket has started successfully, on port: "+portNumber);
+        //myUI.update("Server socket has started successfully, on port: "+portNumber);
+        System.out.println("Server socket started");
     }
 
     public void serverSocketStopped() {
-        myUI.update("Server socket has stopped successfully, on port: "+portNumber);
+        //myUI.update("Server socket has stopped successfully, on port: "+portNumber);
     }
 
     public void serverStartedListening() {
-        myUI.update("Server socket now listening on port: "+portNumber);
+        //myUI.update("Server socket now listening on port: "+portNumber);
+        System.out.println("Server listening");
     }
 
     public void serverStoppedListening() {
-        myUI.update("Server socket has stopped listening on port: "+portNumber);
+        //myUI.update("Server socket has stopped listening on port: "+portNumber);
     }
 
     public void stopServer() {
@@ -113,6 +115,9 @@ public class Server implements Runnable {
 
     private void clientConnected(String clientIPAddress) {
         sendMessageToUI("Client connected:\n\tRemote Socket Address = " + clientIPAddress + "\n\tLocal Socket Address = " + clientSocket.getLocalSocketAddress());
+        
+        System.out.println("Client connected");
+        
     }
 
     public void clientDisconnected(String clientIPAddress) {
@@ -128,6 +133,6 @@ public class Server implements Runnable {
     }
 
     public void sendMessageToUI(String theString) {
-        myUI.update(theString);
+        //myUI.update(theString);
     }
 }
