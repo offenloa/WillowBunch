@@ -31,7 +31,7 @@ public class GUI implements Runnable{
 class VisualBoard extends JPanel {
     private static final long serialVersionUID = 1L;
     private static final int SQUARE_SIZE = 60;
-    
+    private static final int SIZE = 8;
     transient Board b;
     JFrame f;
     int boxheight;
@@ -67,7 +67,10 @@ class VisualBoard extends JPanel {
         Dimension d = f.getSize();
         boxheight = (int) d.getHeight();
         boxwidth = (int) d.getWidth();
+    }
 
+    public Dimension getPreferredSize() {
+        return new Dimension((SIZE) * SQUARE_SIZE +10, (SIZE) * SQUARE_SIZE + 50);
     }
 
     public void cWhitePressed() {
