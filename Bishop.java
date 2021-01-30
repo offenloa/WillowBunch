@@ -1,8 +1,8 @@
 import java.awt.Toolkit;
 public class Bishop extends Piece {
 
-	int highX,highY,lowX,lowY;
 	boolean canMove;
+	int directionX, directionY;
 	
 	public Bishop(int x, int y, boolean color, Board brd) {
 		super(x,y,color,brd);
@@ -16,34 +16,29 @@ public class Bishop extends Piece {
 	public boolean move(int newx, int newy){
 		canMove = true;
 
-		highX = Math.max(newx, x);
-		highY = Math.min(newy, y);
-		lowX = Math.max(newx, x);
-		lowY = Math.min(newy, y);
+		if(Math.abs(newx - x) != Math.abs(newy - y))
+			canMove = false;
 
-		if(lowX == x || lowY == y){
-			for(int i = 1; i < newx - x;i++){
-				if(brd.getpiece(lowX+i, lowY+i) != null)
-					canMove = false;
-			}
-			if(x == lowX && brd.getpiece(highX, highY).color == color)
+		if (newx < x)
+			directionX = 1;
+		else
+			directionX = -1;
+		
+		if (newy < y)
+			directionY = 1;
+		else
+			directionY = -1;
+
+		for(int i = 1; i < Math.abs(newx - x) - 1; i++){
+			if(brd.getpiece(x+i*directionX, y+i*directionY) == null)
 				canMove = false;
-			if(x == highX && brd.getpiece(lowX, lowY).color == color)
-				canMove = false;
-			return canMove;
 		}
 
-		else{
-			for(int i = 1; i < newx - x;i++){
-				if(brd.getpiece(lowX+i, highY+i) != null)
-					canMove = false;
-			}
-			if(x == lowX && brd.getpiece(highX, lowY).color == color)
-				canMove = false;
-			if(x == highX && brd.getpiece(lowX, highY).color == color)
-				canMove = false;
-			return canMove;
-		}
+		if(brd.getpiece(x+Math.abs(newx - x) * directionX, y+Math.abs(newy - y) * directionY).color == color)
+			canMove = false;
+
+		return canMove;
+
 	}
 
 	
