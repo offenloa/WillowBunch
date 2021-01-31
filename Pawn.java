@@ -1,7 +1,11 @@
 import java.awt.Toolkit;
 
+import javax.lang.model.util.ElementScanner6;
+
 public class Pawn extends Piece {
 	boolean canMove;
+	boolean front;
+	int direction;
 	
 	public Pawn(int x, int y, boolean color, Board brd) {
 		super(x,y,color,brd);
@@ -14,12 +18,32 @@ public class Pawn extends Piece {
 
 	public boolean move(int newx, int newy){
 		canMove = true;
-		if(newy != y)
+		front = false;
+		if(color)
+			direction = 1;
+		else
+			direction = -1;
+		if(newx == x)
 			canMove = false;
-		for(int i = x+1; i<=newx;i++){
-			if(brd.getpiece(i,y) != null)
-				canMove = false;
+		if(newy - y == 0){
+			for(int i = 1; i<newx;i++){
+				if(brd.getpiece(x+i*direction,y) != null)
+					canMove = false;
+			}
 		}
+		else if(Math.abs(newy - y) == 1){
+			for(int i = 1; i<newx;i++){
+				if(brd.getpiece(x+i*direction,y) != null)
+					front = true;
+			}
+		}
+		else 
+			canMove = false;
+		if(newy - y == 1 && !front)
+			canMove = false;
+		if(Math.abs(newx - x) > 3)
+			canMove = false;
+
 		return canMove;
 	}
 	
