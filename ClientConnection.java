@@ -87,6 +87,7 @@ public class ClientConnection implements Runnable {
             clientSocket = null;
             input = null;
             output = null;
+            System.exit(0);
         } catch (IOException e) {
             System.out.println("cannot close client socket; exiting program.");
             System.exit(0);
