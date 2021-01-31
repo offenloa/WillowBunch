@@ -2,7 +2,6 @@
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-//import java.io.UnsupportedEncodingException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.logging.Level;
@@ -28,7 +27,6 @@ public class ClientConnection implements Runnable {
             output = clientSocket.getOutputStream();
         } catch (IOException ex) {
             Logger.getLogger(ClientConnection.class.getName()).log(Level.SEVERE, null, ex);
-            myServer.sendMessageToUI("Cannot create IO streams; exiting program.");
             System.out.println("Cannot make IO stream");
             System.exit(0);
         }
@@ -44,7 +42,7 @@ public class ClientConnection implements Runnable {
                 theClientMessage = Character.toString((char)msg);
                 myClientCommandHandler.handleClientMessage(this, theClientMessage);
             } catch (IOException e) {
-                myClientCommandHandler.handleClientMessage("IOException: "
+                System.out.println("IOException: "
                         + e.toString()
                         + ". Stopping thread and disconnecting client: "
                         + clientSocket.getRemoteSocketAddress());
@@ -60,7 +58,7 @@ public class ClientConnection implements Runnable {
             output.write(msg);
             output.flush();
         } catch (IOException e) {
-            myServer.sendMessageToUI("cannot send to socket; exiting program.");
+            System.out.println("cannot send to socket; exiting program.");
             System.exit(0);
         } finally {
         }
@@ -90,7 +88,7 @@ public class ClientConnection implements Runnable {
             input = null;
             output = null;
         } catch (IOException e) {
-            myServer.sendMessageToUI("cannot close client socket; exiting program.");
+            System.out.println("cannot close client socket; exiting program.");
             System.exit(0);
         } finally {
         }

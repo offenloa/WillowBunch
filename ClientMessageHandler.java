@@ -21,9 +21,6 @@ public class ClientMessageHandler {
         }
     }
 
-    public void handleClientMessage(String theExceptionalEvent) {
-        myServer.sendMessageToUI(theExceptionalEvent);
-    }
 
     public void handleCompleteClientMessage(ClientConnection myClientConnection, String fullMessage) {
 

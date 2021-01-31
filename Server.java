@@ -43,30 +43,19 @@ public class Server implements Runnable {
     }
 
     public void serverSocketStarted() {
-        //myUI.update("Server socket has started successfully, on port: "+portNumber);
         System.out.println("Server socket started");
     }
 
-    public void serverSocketStopped() {
-        //myUI.update("Server socket has stopped successfully, on port: "+portNumber);
-    }
-
     public void serverStartedListening() {
-        //myUI.update("Server socket now listening on port: "+portNumber);
         System.out.println("Server listening");
-    }
-
-    public void serverStoppedListening() {
-        //myUI.update("Server socket has stopped listening on port: "+portNumber);
     }
 
     public void stopServer() {
         if (serverSocket != null) {
             try {
                 serverSocket.close();
-                serverSocketStopped();
             } catch (IOException e) {
-                sendMessageToUI("Cannot close ServerSocket, because " + e + ". Exiting program.");
+                System.out.println("Cannot close ServerSocket, because " + e + ". Exiting program.");
                 System.exit(0);
             } finally {
             }
@@ -88,7 +77,6 @@ public class Server implements Runnable {
 
     public void stopListening() {
         setDoListen(false);
-        serverStoppedListening();
     }
 
     @Override
@@ -115,14 +103,11 @@ public class Server implements Runnable {
     }
 
     private void clientConnected(String clientIPAddress) {
-        sendMessageToUI("Client connected:\n\tRemote Socket Address = " + clientIPAddress + "\n\tLocal Socket Address = " + clientSocket.getLocalSocketAddress());
-        
         System.out.println("Client connected");
-        
     }
 
     public void clientDisconnected(String clientIPAddress) {
-        sendMessageToUI("\tClient " + clientIPAddress + " has been disconnected.");
+        System.out.println("\tClient " + clientIPAddress + " has been disconnected.");
     }
 
     public void setPort(int portNumber) {
@@ -133,7 +118,4 @@ public class Server implements Runnable {
         return this.portNumber;
     }
 
-    public void sendMessageToUI(String theString) {
-        //myUI.update(theString);
-    }
 }
