@@ -29,11 +29,16 @@ public class Chess {
     public static void sendMove(boolean isHost, int oldx, int oldy, int x, int y){
         String message = String.valueOf(oldx) + String.valueOf(oldy) + String.valueOf(x) + String.valueOf(y);
         System.out.println("sending " + message);
-        if(isHost){
-            myServer.myCC.sendStringMessageToClient(message);
-        }
-        else{
-            myClient.sendStringMessageToServer(message);
+        try{
+            if(isHost){
+                myServer.myCC.sendStringMessageToClient(message);
+            }
+            else{
+                myClient.sendStringMessageToServer(message);
+            }
+        }catch(NullPointerException e){
+            System.out.println("No connection, ending game.");
+            System.exit(0);
         }
     }
 }
