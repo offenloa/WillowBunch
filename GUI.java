@@ -66,6 +66,7 @@ class VisualBoard extends JPanel {
 
     boolean isHost;
     boolean turn;
+    boolean notOver;
 
     GUI myUI;
 
@@ -73,6 +74,7 @@ class VisualBoard extends JPanel {
         this.f = f;
         this.b = b;
         this.myUI = myUI;
+        notOver = true;
 
         String[] options = {"HOST", "JOIN", "CANCEL"};
         int x = JOptionPane.showOptionDialog(this, "Host Game or Join?", "New Game", 
@@ -112,7 +114,7 @@ class VisualBoard extends JPanel {
 
         addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
-                if(turn) {
+                if(notOver&&turn) {
                     int x = (SIZE-1) - e.getY()/SQUARE_SIZE;
                     int y = e.getX()/SQUARE_SIZE;
                     if(!((x>=0)&&(x<SIZE)&&(y>=0)&&(y<SIZE))){
@@ -170,6 +172,7 @@ class VisualBoard extends JPanel {
     public void reset() {
         b.reset();
         turn = isHost;
+        notOver = true;
         repaint();
     }
 
@@ -201,12 +204,23 @@ class VisualBoard extends JPanel {
 				}
 			}
         }
-
-        if(turn){
-            label.setText("It's your turn!");
+        int result = b.won(isHost);
+        if(result != 0){
+            if(result == 1){
+                label.setText("You Win!!");
+            }
+            else {
+                label.setText("You Lose");
+            }
+            notOver = false;
         }
-        else {
-            label.setText("It's not your turn!");
+        if(notOver){
+            if(turn){
+                label.setText("It's your turn!");
+            }
+            else {
+                label.setText("It's not your turn!");
+            }
         }
 
     }

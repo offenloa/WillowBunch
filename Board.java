@@ -24,6 +24,39 @@ public class Board {
     public void setPiece(int i, int j, Piece p) {
 		board[i][j] = p;
     }
+
+    public int won(boolean color) {
+        boolean white = false;
+        boolean black = false;
+        for(int i = 0; i<8; i++) {
+            for(int j = 0; j<8; j++) {
+                if((board[i][j] != null)&&(board[i][j] instanceof King)){
+                    if(board[i][j].color){
+                        white = true;
+                    }
+                    else {
+                        black = true;
+                    }
+                }
+            }
+        }
+        if((color)&&(!black)){
+            return 1;
+        }
+        else if((color)&&(!white)){
+            return -1;
+        }
+        if((!color)&&(!black)){
+            return -1;
+        }
+        else if((!color)&&(!white)){
+            return 1;
+        }
+        else {
+            return 0;
+        }
+
+    }
     
     public boolean move(Piece p, int i, int j) {
         boolean moved = p.move(i, j);
