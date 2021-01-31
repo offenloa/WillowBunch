@@ -19,6 +19,11 @@ public class GUI implements Runnable{
         update();
     }
 
+    public void reset() {
+        vb.reset();
+    }
+
+
     public GUI(Board b) {
         this.b = b;
         //this.myMain = myMain;
@@ -92,23 +97,16 @@ class VisualBoard extends JPanel {
         
         JToolBar toolbar = new JToolBar("Connection");
 
-        JButton cWhite = new JButton("Connect as White");
-        cWhite.addActionListener(new java.awt.event.ActionListener() {
+        JButton reset = new JButton("Reset");
+        reset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cWhitePressed();
+                resetPressed();
             }
         });
-        toolbar.add(cWhite);
+        toolbar.add(reset);
 
-        JButton cBlack = new JButton("Connect as Black");
-        cWhite.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cBlackPressed();
-            }
-        });
-        toolbar.add(cBlack);
-
-        toolbar.add(new JLabel("test"));
+        label = new JLabel();
+        toolbar.add(label);
 
         add(toolbar);
 
@@ -163,14 +161,16 @@ class VisualBoard extends JPanel {
         return new Dimension((SIZE) * SQUARE_SIZE +10, (SIZE) * SQUARE_SIZE + 50);
     }
 
-    public void cWhitePressed() {
-        b.reset();
-        repaint();
+    public void resetPressed() {
+        reset();
+        test.sendMove(isHost, 9, 9, 9, 9);
         return;
     }
 
-    public void cBlackPressed() {
-        return;
+    public void reset() {
+        b.reset();
+        turn = isHost;
+        repaint();
     }
 
     protected void paintComponent(Graphics g) {
@@ -200,6 +200,13 @@ class VisualBoard extends JPanel {
 					g.drawImage(b.getSprite(j,i), i*SQUARE_SIZE, SQUARE_SIZE*(7 - j), this);
 				}
 			}
+        }
+
+        if(turn){
+            label.setText("It's your turn!");
+        }
+        else {
+            label.setText("It's not your turn!");
         }
 
     }
