@@ -5,7 +5,7 @@ public class GUI implements Runnable{
     JFrame f;
     VisualBoard vb;
     Board b;
-    test myMain;
+    Chess myMain;
     
     public void update(){
         vb.repaint();
@@ -81,12 +81,12 @@ class VisualBoard extends JPanel {
         2, 3, null, options , 0);
 
         if(x == 0){//HOST GAME
-            test.startHosting(myUI);
+            Chess.startHosting(myUI);
             isHost = true;
             turn = true;
         }
         else if(x == 1){//JOIN GAME
-            test.joinGame(myUI);
+            Chess.joinGame(myUI);
             isHost = false;
             turn = false;
         }
@@ -124,7 +124,7 @@ class VisualBoard extends JPanel {
                         if(b.move(heldPiece, x,y)) {
                             b.setPiece(oldx, oldy, null);
                             turn = false;
-                            test.sendMove(isHost, oldx, oldy, x, y);
+                            Chess.sendMove(isHost, oldx, oldy, x, y);
                         }
                         heldPiece = null;
                         held = false;
@@ -165,7 +165,7 @@ class VisualBoard extends JPanel {
 
     public void resetPressed() {
         reset();
-        test.sendMove(isHost, 9, 9, 9, 9);
+        Chess.sendMove(isHost, 9, 9, 9, 9);
         return;
     }
 

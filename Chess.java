@@ -1,4 +1,4 @@
-public class test {
+public class Chess {
 
     static Server myServer;
     static Client myClient;
